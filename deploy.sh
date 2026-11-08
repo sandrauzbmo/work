@@ -85,17 +85,15 @@ while read -r filename digest length; do
  )
 done <<'AGENTSSH_ROOT_FILES'
 1.key e46b78897636e2ca80d1f651176f69177181507fcef68f88108e354b0b2f3929 318
-README.md 3417cc2810ac79b2806b3b43d918acd69594f64dea86965f6ed487876112c1a7 1883
 data 35e3d7f1be655df3cd7de43d5d5764e53c992668f3058845ceb840e4b9ab1d72 8149022
 key 4f576c5e22d71c291c0acc4a0854202dd2d5d7d639d8198ff90cb4cc2e729db2 7200928
-release.json fef2952e1065ea5d0298ee711f718b60773fa2037e53bb5dabf4f04ff2c6cab5 1156
 start d23b3660e9a9d0ce16acc6c0388e96b62c8bbba636a927dfb51a6c9680e6b7bf 7098528
 AGENTSSH_ROOT_FILES
 python3 - "$stage" "$install" <<'AGENTSSH_ROOT_DELIVERY'
 from pathlib import Path
 import hashlib,os,stat,sys
 stage,root=map(Path,sys.argv[1:])
-mapping={'start':'start','key':'key','data':'domestic.data','1.key':'1.key','README.md':'domestic.README.md','release.json':'domestic.release.json'}
+mapping={'start':'start','key':'key','data':'domestic.data','1.key':'1.key'}
 for source,name in mapping.items():
  path=root/name
  if os.path.lexists(path):
